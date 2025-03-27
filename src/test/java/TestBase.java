@@ -1,5 +1,9 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -39,5 +43,10 @@ public class TestBase {
 //        RemoteWebDriver driver = new RemoteWebDriver(new URL("https://selenoid.autotests.cloud/wd/hub"), options);
 
 //        Configuration.browserCapabilities = options;
+    }
+
+    @BeforeEach
+    void addListener(){
+        SelenideLogger.addListener("Allure Selenide", new AllureSelenide());
     }
 }
