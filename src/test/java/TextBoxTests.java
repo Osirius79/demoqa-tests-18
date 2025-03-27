@@ -3,22 +3,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
-public class TextBoxTests {
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-    }
+public class TextBoxTests extends TestBase{
 
     @Test
-    void fillFormTest(){
+    void fillFormTest() {
         Configuration.holdBrowserOpen = true;
 
         open("/text-box");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $("[id=userName]").setValue("Alex Tow");
         $("#userEmail").setValue("alex@tow.com");
         $("#currentAddress").setValue("656 Sheppard Ave");
